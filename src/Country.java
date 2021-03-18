@@ -27,10 +27,9 @@ public enum Country {
             for (Country country : Country.values()) {
                 if (country.getRuName().equals(nameCountry)) {
                     return country;
-                } else {
-                    throw new NoSuchCountryException();
                 }
             }
+            throw new NoSuchCountryException();
         } catch (NoSuchCountryException e) {
             System.out.println("Страны \'" + nameCountry + "\' не существует");
         }
