@@ -22,27 +22,25 @@ public enum Country {
         return this.ruName;
     }
 
-    public static Country getByRuName(final String nameCountry) {
-        try {
-            for (Country country : Country.values()) {
-                if (country.getRuName().equals(nameCountry)) {
-                    return country;
-                }
+    public static Country getByRuName(final String nameCountry) throws NoSuchCountryException {
+        for (Country country : Country.values()) {
+            if (country.getRuName().equals(nameCountry)) {
+                return country;
             }
-            throw new NoSuchCountryException();
-        } catch (NoSuchCountryException e) {
-            System.out.println("Страны \'" + nameCountry + "\' не существует");
         }
-        return null;
+        throw new NoSuchCountryException();
+    }
+
+    public final void openOrClose(final Country country) {
+        if (country.getIsOpen()) {
+            System.out.println("Страна [" + country + "] открыта для посещения.");
+        } else {
+            System.out.println("Страна [" + country + "] закрыта для посещения.");
+        }
     }
 
     @Override
     public String toString() {
         return this.name() + " (" + this.ruName + ")";
-    }
-
-    public static class NoSuchCountryException extends Exception {
-        public NoSuchCountryException() {
-        }
     }
 }
